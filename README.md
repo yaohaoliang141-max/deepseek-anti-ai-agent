@@ -1,165 +1,128 @@
 # DeepSeek 去除 AI 痕迹 Agent
 
-## 简介
-本项目是一个开源 **Agent**，基于 DeepSeek LLM，旨在把 AI 生成的文本“人化”，去除常见的 AI 写作痕迹。核心做法包括：
-- 删除常用 AI 连接词
-- 随机制造语病、错句、拼写错误
-- 随机拆分/合并句子，生成段落
+> 一个基于 DeepSeek API 的开源工具，把 AI 生成的文本"人化"，消除常见的 AI 写作痕迹。
 
-## 项目结构
+---
+
+## ✨ 功能特点
+
+- 自动删除常用 AI 连接词（因此、综上所述、显然等）
+- 随机制造语病、标点错误，模拟真人写作
+- 随机拆分/合并句子，生成自然段落
+- **无需后端服务器**，纯前端运行，打开浏览器即可使用
+- 双栏布局（左侧输入，右侧实时显示结果），类似 Markdown‑Nice 编辑器
+- 一键复制处理结果
+
+---
+
+## 📦 快速部署（推荐，3 步完成）
+
+### 第一步：下载项目
+
+```bash
+git clone https://github.com/yaohaoliang141-max/deepseek-anti-ai-agent.git
+cd deepseek-anti-ai-agent
+```
+
+或者直接在 GitHub 页面点击 **Code → Download ZIP**，解压后进入文件夹。
+
+### 第二步：获取 DeepSeek API Key
+
+1. 前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 注册账号。
+2. 进入 **API Keys** 页面，创建一个新的 API Key，复制备用。
+
+### 第三步：启动工具
+
+**Windows 用户（推荐）：**
+
+双击 `deepseek_ui.bat`，或者在 CMD / PowerShell 中执行：
+
+```cmd
+deepseek_ui.bat
+```
+
+浏览器会自动打开工具界面，即可开始使用。
+
+**其他系统（Mac / Linux）：**
+
+直接用浏览器打开项目目录下的 `ui.html` 文件：
+
+```bash
+open ui.html       # macOS
+xdg-open ui.html   # Linux
+```
+
+---
+
+## 🖥️ 使用方法
+
+1. 打开工具界面后，在左侧 **API Key** 输入框粘贴你的 DeepSeek API Key。
+2. 在左侧 **原始文本** 框中粘贴需要处理的 Markdown 文本。
+3. 点击 **一键处理** 按钮，等待处理完成（按钮会显示"处理中…"）。
+4. 右侧会实时显示处理后的文本（已自动分段，去除 AI 痕迹）。
+5. 点击右侧 **复制** 按钮，结果即可粘贴到任何地方使用。
+
+---
+
+## 🗂️ 项目结构
+
 ```
 deepseek-anti-ai-agent/
-├─ main.py          # CLI 入口
-├─ prompts.py       # Prompt 构造
+├─ ui.html          # 主界面（双栏编辑器，直接浏览器打开）
+├─ style.css        # UI 样式（暗色玻璃拟态）
+├─ script.js        # 前端逻辑（DeepSeek API 调用 + 本地后处理）
+├─ deepseek_ui.bat  # Windows 一键启动脚本
+├─ build.bat        # 打包脚本，生成可分发的 zip 包
+├─ main.py          # Python CLI 版本（可选）
+├─ prompts.py       # Prompt 构造模块
 ├─ postprocess.py   # 本地后处理规则
-├─ requirements.txt # Python 依赖
-├─ ui.html          # 前端 UI（双栏 Markdown‑Nice）
-├─ style.css        # UI 样式（暗色玻璃拟态）
-├─ script.js        # 前端逻辑（DeepSeek 调用 + 后处理）
-├─ deepseek_ui.bat  # 一键打开 UI
-├─ build.bat        # 打包脚本，生成 release/*.zip
-├─ .gitignore       # Git 忽略
+├─ requirements.txt # Python 依赖（仅 CLI 版本需要）
 └─ README.md        # 本说明文件
 ```
 
-## 安装（仅 Python 依赖）
-```bash
-pip install -r requirements.txt
-```
-> 前端 UI 直接在浏览器运行，无需额外依赖。
+---
 
-## 本地运行 UI（推荐）
-1. 双击 `deepseek_ui.bat`（或在 CMD 中运行 `deepseek_ui.bat`），浏览器自动打开 `ui.html`。
-2. 在左侧输入 DeepSeek **API Key** 与待处理的 **Markdown 文本**。
-3. 点击 **一键处理**，右侧实时显示已去除 AI 痕迹、自动分段的文本，点击 **复制** 按钮复制结果。
+## 🐍 Python CLI 版本（可选）
 
-## 打包发布
-```bash
-# 生成 zip 包，输出至 release/ 目录
-build.bat
-```
-生成的 `release/deepseek-anti-ai-agent.zip` 包含所有前端资源，可直接在其他机器上使用。
+如果你更喜欢命令行方式，可以使用 Python CLI 版本：
 
-## 推送更新到 GitHub
-```bash
-git add README.md build.bat
-git commit -m "Update README with detailed deployment and usage"
-git push
-```
-若未添加远程仓库，请先执行：
-```bash
-git remote add origin https://github.com/yaohaoliang141-max/deepseek-anti-ai-agent.git
-```
+### 安装依赖
 
-## 示例
-```text
-原文：
-今天的天气很好，我决定去公园散步。因为我喜欢自然，所以我带上了相机。
-
-处理后：
-今天的天氣很好，我決定去公園散步。因為我喜歡自然, 所以我帶上了相機.
-```
-
-## License
-MIT
-
-## 简介
-本项目是一个开源 **Agent**，基于 DeepSeek LLM，旨在把 AI 生成的文本“人化”，去除常见的 AI 写作痕迹。主要手段包括：
-- 人为制造语病、错句、段落拆分
-- 删除冗余修辞、常用连接词
-- 随机拼写错误、标点错位
-
-## 项目结构
-```
-deepseek-anti-ai-agent/
-├─ main.py          # CLI 入口
-├─ prompts.py       # 生成 Prompt 的模块
-├─ postprocess.py   # 基于规则的后处理
-├─ requirements.txt # Python 依赖列表
-├─ ui.html          # 前端 UI（双栏 Markdown‑Nice）
-├─ style.css        # UI 样式（暗色玻璃拟态）
-├─ script.js        # 前端逻辑（DeepSeek 调用 + 本地后处理）
-├─ deepseek_ui.bat  # 一键打开 UI 的批处理脚本
-├─ build.bat        # 打包脚本，生成 release/*.zip
-├─ .gitignore       # Git 忽略规则
-└─ README.md        # 本说明文件
-```
-
-## 安装（仅 Python 依赖）
-```bash
-pip install -r requirements.txt
-```
-> 前端 UI 直接在浏览器运行，无需额外依赖。
-
-## 本地运行 UI（推荐）
-1. 双击 `deepseek_ui.bat`（或在 CMD 中运行 `deepseek_ui.bat`），浏览器会自动打开 `ui.html`。
-2. 在页面左侧填写 **DeepSeek API Key** 与待处理的 **Markdown 文本**，点击 **一键处理**。
-3. 右侧实时显示已去除 AI 痕迹、自动分段的文本，点击 **复制** 按钮即可复制结果。
-
-## 打包发布
-> 打包后得到的 `deepseek-anti-ai-agent.zip` 可直接在其他机器上使用，无需额外配置。
-```bash
-# 生成 zip 包（会放在 release/ 目录）
-build.bat
-```
-生成的文件 `release/deepseek-anti-ai-agent.zip` 包含所有前端必要资源。
-
-## 推送更新到 GitHub（如已关联远程）
-```bash
-# 添加、提交、推送最新修改
-git add README.md build.bat
-git commit -m "Update README with detailed deployment and usage steps"
-git push
-```
-> 若尚未关联远程，请先执行 `git remote add origin https://github.com/yaohaoliang141-max/deepseek-anti-ai-agent.git`。
-
-## 示例
-```text
-原文：
-今天的天气很好，我决定去公园散步。因为我喜欢自然，所以我带上了相机。
-
-处理后：
-今天的天氣很好，我決定去公園散步。因為我喜歡自然, 所以我帶上了相機.
-```
-
-## License
-MIT
-
-## 简介
-本项目是一个开源 **Agent**，基于 DeepSeek LLM，旨在把 AI 生成的文本“人化”，去除常见的 AI 写作痕迹。主要手段包括：
-- 人为制造语病、错句、段落拆分
-- 删除冗余修辞、常用连接词
-- 随机拼写错误、标点错位
-
-## 项目结构
-```
-deepseek-anti-ai-agent/
-├─ main.py          # CLI 入口
-├─ prompts.py       # 生成 Prompt 的模块
-├─ postprocess.py   # 基于规则的后处理
-├─ requirements.txt # 依赖列表
-└─ README.md        # 本说明文件
-```
-
-## 安装
 ```bash
 pip install -r requirements.txt
 ```
 
-## 使用方法
+### 使用方法
+
 ```bash
 # 将待处理文本写入 input.txt
 python main.py input.txt output.txt
 ```
 
-## 示例
-```text
-原文：
-今天的天气很好，我决定去公园散步。因为我喜欢自然，所以我带上了相机。
+---
 
-处理后：
-今天的天氣很好，我決定去公園散步。因為我喜歡自然, 所以我帶上了相機.
+## 🔒 安全说明
+
+- 本工具**不存储**你的 API Key，密钥仅在浏览器会话中临时使用。
+- 项目代码中**无任何硬编码的密钥**，可安全公开使用。
+- 所有处理均在**本地浏览器**完成（除 DeepSeek API 调用外），无需额外服务器。
+
+---
+
+## 📝 示例
+
+**原文（AI 风格）：**
+```
+综上所述，今天的天气很好，因此我决定去公园散步。显然，我喜欢自然，所以我带上了相机。
 ```
 
-## License
+**处理后（人化风格）：**
+```
+今天的天气很好，我决定去公园散步。喜欢自然嘛，带上了相机。
+```
+
+---
+
+## 📄 License
+
 MIT
