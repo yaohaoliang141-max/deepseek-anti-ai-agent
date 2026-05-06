@@ -60,7 +60,8 @@ xdg-open ui.html   # Linux
 2. 在左侧 **原始文本** 框中粘贴需要处理的 Markdown 文本。
 3. 点击 **一键处理** 按钮，等待处理完成（按钮会显示"处理中…"）。
 4. 右侧会实时显示处理后的文本（已自动分段，去除 AI 痕迹）。
-5. 点击右侧 **复制** 按钮，结果即可粘贴到任何地方使用。
+5. 点击右侧 **复制** 按钮，结果即可粘贴到任何地方使用。<img width="1915" height="896" alt="屏幕截图 2026-05-06 211216" src="https://github.com/user-attachments/assets/512946a2-6ded-465a-9ece-287d4ee4c896" />
+
 
 ---
 
@@ -121,7 +122,8 @@ python main.py input.txt output.txt
 今天的天气很好，我决定去公园散步。喜欢自然嘛，带上了相机。
 ```
 
----
+---朱雀ai检测为0<img width="1794" height="886" alt="屏幕截图_6-5-2026_211656_matrix tencent com" src="https://github.com/user-attachments/assets/e2cbddc9-f8b9-4ac8-8258-9aa1c3fe42e3" />
+
 
 ## 📄 License
 
