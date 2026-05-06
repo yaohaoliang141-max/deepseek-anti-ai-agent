@@ -1,0 +1,22 @@
+# .gitignore
+# Node/npm (if ever added)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# VSCode / JetBrains
+.vscode/
+.idea/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary / backup files
+*.bak
+*.tmp
+
+# Build artifacts
+*.zip
+release/

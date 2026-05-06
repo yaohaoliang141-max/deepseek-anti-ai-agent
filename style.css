@@ -1,0 +1,31 @@
+/* Dark glassmorphism UI with 双栏布局 */
+:root {
+  --bg-color: #121212;
+  --panel-bg: rgba(255,255,255,0.08);
+  --panel-blur: blur(12px);
+  --primary: #4fd1c5;
+  --accent: #ffb400;
+  --text: #e0e0e0;
+}
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Inter',sans-serif; }
+body { background:var(--bg-color); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+.container { background:var(--panel-bg); backdrop-filter:var(--panel-blur); border-radius:12px; max-width:1100px; width:100%; padding:2rem; box-shadow:0 8px 32px rgba(0,0,0,0.6); }
+h1 { text-align:center; margin-bottom:1.5rem; color:var(--primary); }
+/* 双栏布局 */
+.split { display:flex; gap:1.5rem; flex-wrap:wrap; }
+.panel { flex:1; min-width:280px; display:flex; flex-direction:column; background:rgba(255,255,255,0.04); border-radius:8px; padding:1rem; }
+.input-group { margin-bottom:1rem; }
+label { display:block; margin-bottom:0.5rem; font-weight:600; }
+input[type="text"], textarea { width:100%; background:rgba(255,255,255,0.12); border:none; border-radius:8px; padding:0.75rem; color:var(--text); font-size:1rem; resize:vertical; }
+textarea { min-height:200px; }
+button { background:var(--primary); color:#000; border:none; padding:.75rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:600; transition:transform .2s,background .2s; margin-top:auto; }
+button:hover { background:var(--accent); transform:translateY(-2px); }
+/* 输出区 */
+.output-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; font-weight:600; color:var(--primary); }
+.copy-btn { background:var(--accent); color:#000; border:none; border-radius:4px; padding:.25rem .5rem; cursor:pointer; font-size:.85rem; }
+.output-content { background:rgba(255,255,255,0.05); border-radius:8px; padding:1rem; white-space:pre-wrap; min-height:200px; }
+.intro {
+    margin: 0 0 1.5rem;
+    color: var(--text);
+    line-height: 1.5;
+}

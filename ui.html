@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>DeepSeek 去除 AI 痕迹 - 双栏编辑器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>DeepSeek 去除 AI 痕迹</h1>
+  <p class="intro">本工具通过调用 DeepSeek 大模型生成文本后，使用一系列规则（删除常见 AI 连接词、随机制造语病、拆分/合并句子、加入轻度拼写错误）来让输出更像人写，从而去除 AI 写作痕迹。</p>
+<div class="split">
+    <!-- 左侧：输入区 -->
+    <div class="panel input-panel">
+      <div class="input-group">
+        <label for="apiKey">DeepSeek API Key</label>
+        <input type="text" id="apiKey" placeholder="在此粘贴你的 API Key" autocomplete="off">
+      </div>
+      <div class="input-group">
+        <label for="rawText">原始文本（Markdown）</label>
+        <textarea id="rawText" placeholder="在此输入待处理文本（支持 Markdown）"></textarea>
+      </div>
+      <button id="processBtn">一键处理</button>
+    </div>
+    <!-- 右侧：输出区 -->
+    <div class="panel output-panel">
+      <div class="output-header">
+        <span>处理后输出</span>
+        <button class="copy-btn" id="copyBtn">复制</button>
+      </div>
+      <pre id="resultText" class="output-content"></pre>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
